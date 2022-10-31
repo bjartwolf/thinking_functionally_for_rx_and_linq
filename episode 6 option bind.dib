@@ -1,0 +1,38 @@
+#!markdown
+
+https://blog.bjartnes.dev/posts/how-to-think-functionally-when-using-linq-and-reactive-extensions-part-6-introducing-option-bind/
+
+https://twitter.com/bjartnes/status/1586806836124057600
+
+#!fsharp
+
+let textToInt = Map[("One", 1); ("Three", 3); ("Nine", 9) ]
+let parseNumber num = Map.tryFind num textToInt
+let num3 = parseNumber "Three"
+num3
+
+#!markdown
+
+Map works, but the type of thirdNr is now an int option option
+
+
+Notebooks removes one of them, but you can have a look at the type with hovering over
+thirdNr
+
+#!fsharp
+
+let nthNumber n = List.tryItem n ([5 .. 2 .. 13])
+let tryNthNumberWithMap = Option.map nthNumber
+let thirdNr = tryNthNumberWithMap num3
+thirdNr
+
+#!markdown
+
+Option.bind makes us accept an optional input, without changing the output type.
+
+#!fsharp
+
+let nthNumber n = List.tryItem n ([5 .. 2 .. 13])
+let tryNthNumber = Option.bind nthNumber
+let nthNumberWithBind = tryNthNumber num3
+nthNumberWithBind 
