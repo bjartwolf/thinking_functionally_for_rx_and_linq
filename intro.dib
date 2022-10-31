@@ -1,7 +1,21 @@
+#!markdown
+
+Explanation video at:
+
+https://twitter.com/bjartnes/status/1586732009006702592
+
+#!markdown
+
+Variables, we declare them with let
+
 #!fsharp
 
 let a = 5
 a
+
+#!markdown
+
+Functions, we make them in a similar way, but they take arguments, in this case x
 
 #!fsharp
 
@@ -11,6 +25,10 @@ add7 a
 #!fsharp
 
 add7 3
+
+#!markdown
+
+A function that returns a list, in this case all the numbers from the number before until the number after
 
 #!fsharp
 
