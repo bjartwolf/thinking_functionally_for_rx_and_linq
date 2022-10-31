@@ -1,0 +1,14 @@
+#!markdown
+
+https://twitter.com/bjartnes/status/1586770154901364740
+
+https://blog.bjartnes.dev/posts/how-to-think-functionally-when-using-linq-and-reactive-extensions-part-3-option-map/
+
+Here, we have a datastructure we do not know how to program against, but we can use the Option.map to make the function for for optional integers.
+
+#!fsharp
+
+let a = Some 4
+let tryAdd7 = Option.map add7
+let largerNumber = tryAdd7 a
+largerNumber
