@@ -1,0 +1,36 @@
+#!markdown
+
+https://twitter.com/bjartnes/status/1586800708984393728
+
+https://blog.bjartnes.dev/posts/how-to-think-functionally-when-using-linq-and-reactive-extensions-part-5-combing-map/
+
+#!fsharp
+
+let thirdNumber = List.tryItem 3 [5..11]
+let textToInt = Map[("One", 1); ("Two", 2); ("Three", 3); ("Four", 4); ("Five", 5); ("Seven", 7); ("Nine", 9) ]
+let parseNumber num = Map.tryFind num textToInt
+
+let textNumbers = ["One"; "Six"; "Sven"; "Nine"]
+let parseNumbers = List.map parseNumber
+let parsedNumbers = parseNumbers textNumbers
+parsedNumbers
+
+#!markdown
+
+This code has a bug, because composing can be tricky, but we do get help from the compiler
+
+#!fsharp
+
+let add7 x = x + 7
+let tryadd7s = Option.map (List.map add7)
+tryadd7s parsedNumbers
+
+#!markdown
+
+Here, we swapped to order to line the types up properly
+
+#!fsharp
+
+let add7 x = x + 7
+let tryadd7s = List.map (Option.map add7)
+tryadd7s parsedNumbers
