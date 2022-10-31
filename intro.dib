@@ -1,0 +1,18 @@
+#!fsharp
+
+let a = 5
+a
+
+#!fsharp
+
+let add7 x = x + 7
+add7 a
+
+#!fsharp
+
+add7 3
+
+#!fsharp
+
+let beforeAndAfter i = [ i - 1 .. i + 1]
+beforeAndAfter a
