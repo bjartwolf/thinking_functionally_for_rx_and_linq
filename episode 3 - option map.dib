@@ -9,6 +9,7 @@ Here, we have a datastructure we do not know how to program against, but we can 
 #!fsharp
 
 let a = Some 4
+let add7 x = x + 7
 let tryAdd7 = Option.map add7
 let largerNumber = tryAdd7 a
 largerNumber
