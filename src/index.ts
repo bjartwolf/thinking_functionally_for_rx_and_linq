@@ -1,18 +1,28 @@
-import { Observable } from 'rxjs';
-var observable = Observable.create((observer:any) => {
-    observer.next('Hello World!');
-    observer.next('Hello Again!');
-    observer.complete();
-    observer.next('Bye');
-})
-observable.subscribe(
-    (x:any) => logItem(x),
-    (error: any) => logItem ('Error: ' + error),
-    () => logItem('Completed')
-);
-function logItem(val:any) {
-    var node = document.createElement("li");
-    var textnode = document.createTextNode(val);
-    node.appendChild(textnode);
-    document.getElementById("list").appendChild(node);
+import { fromEvent, map } from "rxjs";
+function getPos(evt: MouseEvent): number {
+  return evt.pageX;
+}
+
+function add7(x: number): number {
+  return x + 7;
+}
+let add7s = map(add7);
+
+let getPositions = map(getPos);
+
+fromEvent<MouseEvent>(document, "mousemove")
+  .pipe(getPositions, add7s)
+  .subscribe({
+    next: (x: any) => logItem(x),
+    error:  (error: any) => logItem("Error: " + error),
+    complete:  () => logItem("Completed")
+  }
+  );
+
+var list = document.getElementById("list");
+function logItem(val: any) {
+  var node = document.createElement("li");
+  var textnode = document.createTextNode(val);
+  node.appendChild(textnode);
+  document.getElementById("list").insertBefore(node, list.children[0]);
 }
