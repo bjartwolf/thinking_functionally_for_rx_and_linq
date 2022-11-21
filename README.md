@@ -6,4 +6,8 @@ To run these, you need .NET 6 (at least now), have a look at https://marketplace
 
 
 
+``` 
+ npm ci
  npm run start
+```
+should be at http://localhost:8080 
