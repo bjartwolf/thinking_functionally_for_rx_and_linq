@@ -10,14 +10,16 @@ let add7s = map(add7);
 
 let getPositions = map(getPos);
 
-fromEvent<MouseEvent>(document, "mousemove")
-  .pipe(getPositions, add7s)
-  .subscribe({
+let events = fromEvent<MouseEvent>(document, "mousemove")
+let positions = getPositions(events)
+let posAnd7s = add7s(positions)
+
+posAnd7s.subscribe({
     next: (x: any) => logItem(x),
     error:  (error: any) => logItem("Error: " + error),
     complete:  () => logItem("Completed")
   }
-  );
+);
 
 var list = document.getElementById("list");
 function logItem(val: any) {
